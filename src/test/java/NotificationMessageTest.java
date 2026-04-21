@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 import java.time.Duration;
 
 public class NotificationMessageTest {
+
     @Test
     public void notificationMessage() {
         //задаем опции для нашего драйвера
@@ -17,17 +18,14 @@ public class NotificationMessageTest {
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
         options.addArguments("--disable-notfications");
-
         //определяем браузер с которым хотим работать
         WebDriver driver = new ChromeDriver(options);
         SoftAssert softAssert = new SoftAssert();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //открывает страницу по указанному url
         driver.get("https://the-internet.herokuapp.com/notification_message_rendered");
-
         //нажимаем на кнопку
         driver.findElement(By.xpath("//a[text()='Click here']")).click();
-
         //проверяем соответствие текста ожиданиям
         String text = driver.findElement(By.id("flash")).getText();
         Assert.assertTrue(text.contains("Action"));

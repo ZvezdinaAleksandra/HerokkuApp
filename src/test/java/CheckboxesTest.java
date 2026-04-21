@@ -10,8 +10,9 @@ import org.testng.asserts.SoftAssert;
 import java.time.Duration;
 
 public class CheckboxesTest {
+
     @Test
-    public void checkboxes() {
+    public void checkBoxes() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
@@ -21,9 +22,7 @@ public class CheckboxesTest {
         SoftAssert softAssert = new SoftAssert();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         driver.get("https://the-internet.herokuapp.com/checkboxes");
-
         // первый чекбокс
         WebElement firstCheckbox =
                 driver.findElement(By.cssSelector("input[type='checkbox']:nth-of-type(1)"));
@@ -31,7 +30,6 @@ public class CheckboxesTest {
         softAssert.assertFalse(firstCheckbox.isSelected());
         firstCheckbox.click();
         softAssert.assertTrue(firstCheckbox.isSelected());
-
         // второй чекбокс
         WebElement secondCheckbox =
                 driver.findElement(By.cssSelector("input[type='checkbox']:nth-of-type(2)"));
